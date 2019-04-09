@@ -25,6 +25,6 @@ Minimal [Alpine][alpine] image used as a data container.
 
 
 [alpine]: http://alpinelinux.org/
-[gh-downloader]: https://github.com/CraftDock/gh-downloader
-[sh-templater]: https://github.com/CraftDock/sh-templater
+[gh-downloader]: https://github.com/CraftShell/gh-downloader
+[sh-templater]: https://github.com/CraftShell/sh-templater
 [wait-host]: https://raw.githubusercontent.com/CraftShell/wait-host/master/wait-host.sh
