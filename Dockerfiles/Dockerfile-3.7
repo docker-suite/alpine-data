@@ -1,0 +1,27 @@
+FROM dsuite/alpine-base:3.7
+
+LABEL maintainer="Hexosse <hexosse@gmail.com>" \
+      description="Minimal Alpine image used as a data container." \
+      vendor="docker-suite" \
+      license="MIT"
+
+
+## Install
+RUN \
+	# Print executed commands
+	set -x \
+    # Update repository indexes
+    && apk update \
+    # Add useful tools
+    && apk-install \
+        findutils \
+	# Clear apk's cache
+	&& apk-cleanup
+
+
+## Default working dir
+WORKDIR ["/data"]
+
+
+## Volumes
+VOLUME ["/data"]
