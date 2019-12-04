@@ -5,6 +5,7 @@
 ![MicroBadger Layers (tag)](https://img.shields.io/microbadger/layers/dsuite/alpine-data/latest.svg?style=flat-square)
 ![MicroBadger Size (tag)](https://img.shields.io/microbadger/image-size/dsuite/alpine-data/latest.svg?style=flat-square)
 [![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg?style=flat-square)](https://opensource.org/licenses/MIT)
+[![dockeri.co](https://dockeri.co/image/dsuite/alpine-data)](https://hub.docker.com/r/dsuite/alpine-data)
 
 
 Minimal [Alpine][alpine] image used as a data container based on [docker-suite (dsuite)][docker-suite] [alpine-base][alpine-base] images.
