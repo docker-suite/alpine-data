@@ -5,6 +5,18 @@ LABEL maintainer="Hexosse <hexosse@gmail.com>" \
       vendor="docker-suite" \
       license="MIT"
 
+LABEL maintainer="Hexosse <hexosse@gmail.com>" \
+    org.opencontainers.image.title="docker-suite dsuite/alpine-data image" \
+    org.opencontainers.image.description="Minimal Alpine image used as a data container" \
+    org.opencontainers.image.authors="Hexosse <hexosse@gmail.com>" \
+    org.opencontainers.image.vendor="docker-suite" \
+    org.opencontainers.image.licenses="MIT" \
+    org.opencontainers.image.url="https://github.com/docker-suite/alpine-data" \
+    org.opencontainers.image.source="https://github.com/docker-suite/alpine-data" \
+    org.opencontainers.image.documentation="https://github.com/docker-suite/alpine-data/blob/master/Readme.md" \
+    org.opencontainers.image.created="{{DOCKER_IMAGE_CREATED}}" \
+    org.opencontainers.image.revision="{{DOCKER_IMAGE_REVISION}}"
+
 
 ## Install
 RUN \
