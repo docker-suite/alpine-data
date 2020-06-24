@@ -24,7 +24,7 @@ all: ## Build all supported versions
 	@$(MAKE) build v=3.10
 	@$(MAKE) build v=3.11
 	@$(MAKE) build v=3.12
-	
+
 build: ## Build ( usage : make build v=3.12 )
 	$(eval version := $(or $(v),$(latest)))
 	@docker run --rm \
@@ -36,7 +36,7 @@ build: ## Build ( usage : make build v=3.12 )
 		-e DOCKER_IMAGE_REVISION=$(DOCKER_IMAGE_REVISION) \
 		dsuite/alpine-data \
 		sh -c "templater Dockerfile.template > Dockerfile-$(version)"
-	@docker build \
+	@docker build --force-rm \
 		--build-arg http_proxy=${http_proxy} \
 		--build-arg https_proxy=${https_proxy} \
 		--file $(DIR)/Dockerfiles/Dockerfile-$(version) \
