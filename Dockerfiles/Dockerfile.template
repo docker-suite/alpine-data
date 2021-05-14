@@ -1,11 +1,6 @@
 FROM dsuite/alpine-base:{{ALPINE_VERSION}}
 
 LABEL maintainer="Hexosse <hexosse@gmail.com>" \
-      description="Minimal Alpine image used as a data container." \
-      vendor="docker-suite" \
-      license="MIT"
-
-LABEL maintainer="Hexosse <hexosse@gmail.com>" \
     org.opencontainers.image.title="docker-suite dsuite/alpine-data image" \
     org.opencontainers.image.description="Minimal Alpine image used as a data container" \
     org.opencontainers.image.authors="Hexosse <hexosse@gmail.com>" \
@@ -17,6 +12,8 @@ LABEL maintainer="Hexosse <hexosse@gmail.com>" \
     org.opencontainers.image.created="{{DOCKER_IMAGE_CREATED}}" \
     org.opencontainers.image.revision="{{DOCKER_IMAGE_REVISION}}"
 
+## Copy folders
+COPY rootfs /
 
 ## Install
 RUN \
@@ -30,10 +27,8 @@ RUN \
 	# Clear apk's cache
 	&& apk-cleanup
 
-
 ## Default working dir
 WORKDIR /data
-
 
 ## Volumes
 VOLUME ["/data"]
