@@ -61,12 +61,8 @@ build: ## Build ( usage : make build v=3.13 )
 
 test: ## Test ( usage : make test v=3.13 )
 	$(eval version := $(or $(v),$(latest)))
-	@docker run --rm -t \
-		-v $(DIR)/tests:/goss \
-		-v /tmp:/tmp \
-		-v /var/run/docker.sock:/var/run/docker.sock \
-		dsuite/goss:latest \
-		dgoss run --entrypoint=/goss/entrypoint.sh $(DOCKER_IMAGE):$(version)
+	@GOSS_FILES_PATH=$(DIR)/tests \
+	 	dgoss run $(DOCKER_IMAGE):$(version) bash -c "sleep 60"
 
 push: ## Push ( usage : make push v=3.13 )
 	$(eval version := $(or $(v),$(latest)))
@@ -75,11 +71,11 @@ push: ## Push ( usage : make push v=3.13 )
 
 shell: ## Run shell ( usage : make shell v=3.13 )
 	$(eval version := $(or $(v),$(latest)))
-	@mkdir -p $(DIR)/packages
-	@docker run -it --rm \
+	@$(MAKE) build v=$(version)
+	@docker run -it --rm --init \
 		-e DEBUG_LEVEL=DEBUG \
 		$(DOCKER_IMAGE):$(version) \
-		sh
+		bash
 
 remove: ## Remove all generated images
 	@docker images | grep $(DOCKER_IMAGE) | tr -s ' ' | cut -d ' ' -f 2 | xargs -I {} docker rmi $(DOCKER_IMAGE):{} || true

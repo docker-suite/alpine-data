@@ -23,7 +23,7 @@ RUN \
 	# Print executed commands
 	set -x \
     # Update repository indexes
-    && apk update \
+    && apk-update \
     # Add useful tools
     && apk-install \
         findutils \
