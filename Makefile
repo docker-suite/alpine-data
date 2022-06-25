@@ -26,6 +26,8 @@ build-all: ## Build all supported versions
 	@$(MAKE) build v=3.12
 	@$(MAKE) build v=3.13
 	@$(MAKE) build v=3.14
+	@$(MAKE) build v=3.15
+	@$(MAKE) build v=3.16
 
 test-all: ## Test all supported versions
 	@$(MAKE) test v=3.7
@@ -36,6 +38,8 @@ test-all: ## Test all supported versions
 	@$(MAKE) test v=3.12
 	@$(MAKE) test v=3.13
 	@$(MAKE) test v=3.14
+	@$(MAKE) test v=3.15
+	@$(MAKE) test v=3.16
 
 push-all: ## Push all supported versions
 	@$(MAKE) push v=3.7
@@ -46,8 +50,10 @@ push-all: ## Push all supported versions
 	@$(MAKE) push v=3.12
 	@$(MAKE) push v=3.13
 	@$(MAKE) push v=3.14
+	@$(MAKE) push v=3.15
+	@$(MAKE) push v=3.16
 
-build: ## Build ( usage : make build v=3.13 )
+build: ## Build ( usage : make build v=3.16 )
 	$(eval version := $(or $(v),$(latest)))
 	@docker run --rm \
 		-v $(DIR)/Dockerfiles:/data \
@@ -62,17 +68,17 @@ build: ## Build ( usage : make build v=3.13 )
 		$(DIR)/Dockerfiles
 	@[ "$(version)" = "$(latest)" ] && docker tag $(DOCKER_IMAGE):$(version) $(DOCKER_IMAGE):latest || true
 
-test: ## Test ( usage : make test v=3.13 )
+test: ## Test ( usage : make test v=3.16 )
 	$(eval version := $(or $(v),$(latest)))
 	@GOSS_FILES_PATH=$(DIR)/tests \
 	 	dgoss run $(DOCKER_IMAGE):$(version) bash -c "sleep 60"
 
-push: ## Push ( usage : make push v=3.13 )
+push: ## Push ( usage : make push v=3.16 )
 	$(eval version := $(or $(v),$(latest)))
 	@docker push $(DOCKER_IMAGE):$(version)
 	@[ "$(version)" = "$(latest)" ] && docker push $(DOCKER_IMAGE):latest || true
 
-shell: ## Run shell ( usage : make shell v=3.13 )
+shell: ## Run shell ( usage : make shell v=3.16 )
 	$(eval version := $(or $(v),$(latest)))
 	@$(MAKE) build v=$(version)
 	@docker run -it --rm --init \
